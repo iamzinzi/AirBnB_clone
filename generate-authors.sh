@@ -2,7 +2,6 @@
 set -e
 
 # see also ".mailmap" for how email addresses and names are deduplicated
-
 {
 	cat <<-'EOH'
 	# This file lists all individuals having contributed content to the
