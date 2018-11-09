@@ -2,8 +2,7 @@
 """
 This module contains the class FileStorage
 """
-#from models.base_model import BaseModel
-import models
+from models.base_model import BaseModel
 import json
 import os
 
@@ -24,13 +23,12 @@ class FileStorage:
     def save(self):
         with open(self.__file_path, "w", encoding="UTF-8") as f:
             obj_dict = {k: v.to_dict() for k, v in self.__object.items()}
-            f.write(json.dumps(obj_dict))
+            json.dump(obj_dict, f)
+
     def reload(self):
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, "r", encoding="UTF-8") as f:
-                obj_dict = json.loads(f.read())
+                obj_dict = json.load(f)
                 for k, v in obj_dict.items():
-                    #obj = BaseModel(**v) 
-                    #print(obj.to_dict())
-                    #self.__object[k] = obj
-                    print("lol")
+                    obj = BaseModel(**v)
+                    self.__class__.__object[k] = obj
