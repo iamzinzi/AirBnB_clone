@@ -23,11 +23,23 @@ class TestBaseModel(unittest.TestCase):
 
     def test_uuid(self):
         self.assertNotEqual(self.base1.id, self.base2.id)
-
-    def test_attr_type(self):
+        self.assertTrue(hasattr(self.base1, "id"))
         self.assertEqual(type(self.base1.id), str)
+        self.assertEqual(type(self.base2.id), str)
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.base1, BaseModel))
+        self.assertTrue(isinstance(self.base2, BaseModel))
+
+    def test_created_at(self):
+        self.assertTrue(hasattr(self.base1, "created_at"))
         self.assertEqual(type(self.base1.created_at), type(datetime.now()))
+        self.assertNotEqual(self.base1.created_at, self.base2.created_at)
+
+    def test_updated_at(self):
+        self.assertTrue(hasattr(self.base1, "updated_at"))
         self.assertEqual(type(self.base1.updated_at), type(datetime.now()))
+        self.assertNotEqual(self.base1.updated_at, self.base2.updated_at)
 
     def test_str(self):
         expected = "[{}] ({}) {}".format(
@@ -45,6 +57,12 @@ class TestBaseModel(unittest.TestCase):
         time = self.base1.updated_at
         self.base1.save()
         self.assertFalse(time == self.base1.updated_at)
+
+#    def test_to_dict(self):
+#        self.base1.name = "Holberton"
+#        model_json = self.base1.to_dict()
+#        base1_dict = self.base1.__dict__
+#        self.assertEqual(model_json['created_at'], base1_dict['created_at'].isoformat())
 
 if __name__ == '__main__':
     unittest.main()
