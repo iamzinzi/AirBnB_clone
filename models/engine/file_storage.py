@@ -3,6 +3,7 @@
 This module contains the class FileStorage
 """
 from models.base_model import BaseModel
+from models.user import User
 import json
 import os
 
@@ -30,5 +31,9 @@ class FileStorage:
             with open(self.__file_path, "r", encoding="UTF-8") as f:
                 obj_dict = json.load(f)
                 for k, v in obj_dict.items():
-                    obj = BaseModel(**v)
+                    name = k.split('.')[0]
+                    if name == 'BaseModel':
+                        obj = BaseModel(**v)
+                    elif name == 'User':
+                        obj = User(**v)
                     self.__class__.__object[k] = obj
