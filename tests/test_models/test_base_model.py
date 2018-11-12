@@ -74,5 +74,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertDictEqual(base1_dict, model_json)
 
 
+    def test_init_with_kwargs(self):
+        self.base1.name = "Holberton"
+        model_json = self.base1.to_dict()
+        my_new_model = BaseModel(**model_json)
+        self.assertDictEqual(model_json, my_new_model.to_dict())
+        self.assertIn("name", my_new_model.to_dict())
+        self.assertIsNot(self.base1, my_new_model)
+
 if __name__ == '__main__':
     unittest.main()
