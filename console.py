@@ -79,14 +79,14 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             obj_list = []
             for k, v in objects.items():
-                obj_list.append(objects[k])
+                obj_list.append(str(objects[k]))
             if obj_list:
                 print(obj_list)
         else:
             obj_list = []
             for k, v in objects.items():
                 if objects[k].__class__.__name__ == args[0]:
-                    obj_list.append(objects[k])
+                    obj_list.append(str(objects[k]))
             if obj_list:
                 print(obj_list)
             else:
