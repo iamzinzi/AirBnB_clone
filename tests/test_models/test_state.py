@@ -47,6 +47,18 @@ class TestState(unittest.TestCase):
         self.assertEqual(type(self.state1.updated_at), type(datetime.now()))
         self.assertNotEqual(self.state1.updated_at, self.state2.updated_at)
 
+    def test_str(self):
+        expected = "[{}] ({}) {}".format(
+            self.state1.__class__.__name__,
+            self.state1.id,
+            self.state1.__dict__
+        )
+        a_io = io.StringIO()
+        sys.stdout = a_io
+        print(self.state1, end="")
+        self.assertEqual(expected, a_io.getvalue())
+        sys.stdout = sys.__stdout__
+
     def test_name(self):
         self.assertTrue(hasattr(self.state1, "name"))
         self.assertEqual(self.state1.name, "")
