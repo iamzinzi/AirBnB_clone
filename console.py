@@ -11,7 +11,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 import models
-
+import shlex
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
                 obj_id = objects[k].id
                 if obj_id == args[1]:
                     obj_dict = objects[k].__dict__
-                    input_value = args[3][1:-1]
+                    input_value = args[3]
                     if is_int(input_value):
                         obj_dict[args[2]] = int(input_value)
                     elif is_float(input_value):
@@ -148,7 +148,7 @@ def parse(arg):
     """
     Parse arguments and split by space
     """
-    return tuple(map(str, arg.split()))
+    return tuple(shlex.split(arg))
 
 def is_int(n):
     """Checks if argument is an integer"""
