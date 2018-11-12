@@ -58,11 +58,29 @@ class TestBaseModel(unittest.TestCase):
         self.base1.save()
         self.assertFalse(time == self.base1.updated_at)
 
-#    def test_to_dict(self):
-#        self.base1.name = "Holberton"
-#        model_json = self.base1.to_dict()
-#        base1_dict = self.base1.__dict__
-#        self.assertEqual(model_json['created_at'], base1_dict['created_at'].isoformat())
+    def test_update(self):
+        self.base1.name = "Holberton"
+        self.assertTrue(hasattr(self.base1, "name"))
+
+    def test_to_dict(self):
+        self.base1.name = "Holberton"
+        model_json = self.base1.to_dict()
+        base1_dict = self.base1.__dict__
+        self.assertEqual(model_json['created_at'], base1_dict['created_at'].isoformat())
+        self.assertEqual(model_json['updated_at'], base1_dict['updated_at'].isoformat())
+        base1_dict['created_at'] = base1_dict['created_at'].isoformat()
+        base1_dict['updated_at'] = base1_dict['updated_at'].isoformat()
+        base1_dict['__class__'] = self.base1.__class__.__name__
+        self.assertDictEqual(base1_dict, model_json)
+
+
+    def test_init_with_kwargs(self):
+        self.base1.name = "Holberton"
+        model_json = self.base1.to_dict()
+        my_new_model = BaseModel(**model_json)
+        self.assertDictEqual(model_json, my_new_model.to_dict())
+        self.assertIn("name", my_new_model.to_dict())
+        self.assertIsNot(self.base1, my_new_model)
 
 if __name__ == '__main__':
     unittest.main()
