@@ -4,6 +4,11 @@ This module contains the class FileStorage
 """
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 import json
 import os
 
@@ -27,13 +32,20 @@ class FileStorage:
             json.dump(obj_dict, f)
 
     def reload(self):
+        classes = {
+                "BaseModel": BaseModel,
+                "User": User,
+                "State": State,
+                "City": City,
+                "Amenity": Amenity,
+                "Place": Place,
+                "Review": Review
+                }
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, "r", encoding="UTF-8") as f:
                 obj_dict = json.load(f)
                 for k, v in obj_dict.items():
                     name = k.split('.')[0]
-                    if name == 'BaseModel':
-                        obj = BaseModel(**v)
-                    elif name == 'User':
-                        obj = User(**v)
+                    if name in classes:
+                        obj = classes[name](**v)
                     self.__class__.__object[k] = obj
