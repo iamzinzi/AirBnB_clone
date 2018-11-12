@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module contains unit tests for class BaseModel
+This module contains unit tests for class State
 """
 from datetime import datetime
 import io
