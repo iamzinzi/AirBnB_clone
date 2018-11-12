@@ -31,6 +31,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(isinstance(self.base1, BaseModel))
         self.assertTrue(isinstance(self.base2, BaseModel))
 
+    def test_type(self):
+        self.assertEqual(type(self.base1), BaseModel)
+
     def test_created_at(self):
         self.assertTrue(hasattr(self.base1, "created_at"))
         self.assertEqual(type(self.base1.created_at), type(datetime.now()))
