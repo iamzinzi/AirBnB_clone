@@ -45,7 +45,6 @@ class TestState(unittest.TestCase):
     def test_updated_at(self):
         self.assertTrue(hasattr(self.state1, "updated_at"))
         self.assertEqual(type(self.state1.updated_at), type(datetime.now()))
-        self.assertNotEqual(self.state1.updated_at, self.state2.updated_at)
 
     def test_str(self):
         expected = "[{}] ({}) {}".format(
@@ -65,7 +64,7 @@ class TestState(unittest.TestCase):
         State.name = "California"
         self.assertEqual(State.name, "California")
         self.assertEqual(self.state1.name, "California")
-        self.model_json = self.state1.name = "Massachusetts"
+        self.state1.name = "Massachusetts"
         self.assertEqual(self.state1.name, "Massachusetts")
         State.name = "Connecticut"
         self.assertEqual(self.state2.name, "Connecticut")

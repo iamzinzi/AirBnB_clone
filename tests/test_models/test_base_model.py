@@ -37,12 +37,10 @@ class TestBaseModel(unittest.TestCase):
     def test_created_at(self):
         self.assertTrue(hasattr(self.base1, "created_at"))
         self.assertEqual(type(self.base1.created_at), type(datetime.now()))
-        self.assertNotEqual(self.base1.created_at, self.base2.created_at)
 
     def test_updated_at(self):
         self.assertTrue(hasattr(self.base1, "updated_at"))
         self.assertEqual(type(self.base1.updated_at), type(datetime.now()))
-        self.assertNotEqual(self.base1.updated_at, self.base2.updated_at)
 
     def test_str(self):
         expected = "[{}] ({}) {}".format(
