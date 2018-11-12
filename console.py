@@ -120,7 +120,8 @@ class HBNBCommand(cmd.Cmd):
                         if key == args[2]:
                             obj_dict[key] = type(key)(args[3])
                             return
-            print("** no instance found **")
+                else:
+                    print("** no instance found **")
 
     def emptyline(self):
         pass
