@@ -11,7 +11,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 import models
-
+import shlex
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -129,12 +129,14 @@ class HBNBCommand(cmd.Cmd):
                 obj_id = objects[k].id
                 if obj_id == args[1]:
                     obj_dict = objects[k].__dict__
-                    obj_dict[args[2]] = args[3][1:-1]
+                    input_value = args[3]
+                    if is_int(input_value):
+                        obj_dict[args[2]] = int(input_value)
+                    elif is_float(input_value):
+                        obj_dict[args[2]] = float(input_value)
+                    else:
+                        obj_dict[args[2]] = input_value
                     models.storage.save()
-#                    for key, value in obj_dict.items():
-#                        if key == args[2]:
-#                            obj_dict[key] = type(key)(args[3])
-#                            return
                 else:
                     print("** no instance found **")
 
@@ -146,7 +148,24 @@ def parse(arg):
     """
     Parse arguments and split by space
     """
-    return tuple(map(str, arg.split()))
+    return tuple(shlex.split(arg))
+
+def is_int(n):
+    """Checks if argument is an integer"""
+    try:
+        int(n)
+        return True
+    except ValueError:
+        return False
+
+def is_float(n):
+    """Checks if argument is a float. NOTE: Also returns True for integers,
+    so must use after checking is_int"""
+    try:
+        float(n)
+        return True
+    except ValueError:
+        return False
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
