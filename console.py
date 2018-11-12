@@ -109,6 +109,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     # TODO: Fix to accomodate other classes other than BaseModel
+    # TODO: The attribute value must be casted to the attribute type
     def do_update(self, arg):
         'Updates an instance based on the class name and id'
         args = parse(arg)
@@ -124,16 +125,18 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             print("** value missing **")
         else:
-            objects = models.storage.all()
             for k, v in objects.items():
                 obj_id = objects[k].id
                 if obj_id == args[1]:
                     obj_dict = objects[k].__dict__
-                    for key, value in obj_dict.items():
-                        if key == args[2]:
-                            obj_dict[key] = type(key)(args[3])
-                            return
-            print("** no instance found **")
+                    obj_dict[args[2]] = args[3][1:-1]
+                    models.storage.save()
+#                    for key, value in obj_dict.items():
+#                        if key == args[2]:
+#                            obj_dict[key] = type(key)(args[3])
+#                            return
+                else:
+                    print("** no instance found **")
 
     def emptyline(self):
         pass
