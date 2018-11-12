@@ -32,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
             obj = BaseModel()
             obj.save()
             print(obj.id)
-    
+
     # TODO: Fix to accomodate other classes other than BaseModel
     def do_show(self, arg):
         'Prints the string representation of an instance'
@@ -68,9 +68,12 @@ class HBNBCommand(cmd.Cmd):
                 obj_id = objects[k].id
                 if obj_id == args[1]:
                     del objects[k]
+                    models.storage.save()
                     break
+            else:
+                print("** no instance found **")
 
-    
+
     # TODO: Fix to accomodate other classes other than BaseModel
     def do_all(self, arg):
         'Prints all string representation of all instances'
@@ -91,7 +94,7 @@ class HBNBCommand(cmd.Cmd):
                 print(obj_list)
             else:
                 print("** class doesn't exist **")
-                
+
 
     # TODO: Fix to accomodate other classes other than BaseModel
     def do_update(self, arg):
