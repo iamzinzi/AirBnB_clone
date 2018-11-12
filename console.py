@@ -112,7 +112,6 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             print("** value missing **")
         else:
-            objects = models.storage.all()
             for k, v in objects.items():
                 obj_id = objects[k].id
                 if obj_id == args[1]:
