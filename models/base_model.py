@@ -34,7 +34,7 @@ class BaseModel:
             self.id,
             self.__dict__
         )
-    
+
     def __repr__(self):
         """Prints a BaseModel Instance"""
         return "[{:s}] ({:s}) {}".format(
