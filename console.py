@@ -108,8 +108,6 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-    # TODO: Fix to accomodate other classes other than BaseModel
-    # TODO: The attribute value must be casted to the attribute type
     def do_update(self, arg):
         'Updates an instance based on the class name and id'
         args = parse(arg)
@@ -141,8 +139,15 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
 
     def emptyline(self):
+        'overrides default emptyline behavior to do nothing'
         pass
 
+    # TODO: do_all is currently hardcoded, make dynamic for all commands
+    def default(self, line):
+        'overrides default syntax error message'
+        args = line.split('.')
+        if args[0] in HBNBCommand.classes:
+            self.do_all(args[0])
 
 def parse(arg):
     """
