@@ -7,7 +7,7 @@ import io
 import sys
 from datetime import datetime
 from models.base_model import BaseModel
-
+import models
 
 class TestBaseModel(unittest.TestCase):
     """test for class BaseModel and its methods
@@ -82,6 +82,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertDictEqual(model_json, my_new_model.to_dict())
         self.assertIn("name", my_new_model.to_dict())
         self.assertIsNot(self.base1, my_new_model)
+
+    def test_storage(self):
+        #storage = models.engine.file_storage.FileStorage()
+        obj_dict = models.storage.all()
+        self.assertTrue(obj_dict)
 
 if __name__ == '__main__':
     unittest.main()
