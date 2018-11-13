@@ -1,13 +1,13 @@
 # 0x00. AirBnB clone - The console
-—
+
 ## Description
 
 This project is the first step towards building our first full web application: an AirBnB clone. In this project, we wrote a command interpreter to manage our AirBnB objects. 
 * A parent class (called `BaseModel`) was put in place to take care of the initialization, serialization and deserialization of future instances.
-* created a simple flow of serialization/deserialization: Instance <-> Dictionary <-> JSON string <-> file
-* created all classes used for AirBnB (`User`, `State`, `City`, `Place`…) that inherit from `BaseModel`
-* create the first abstracted storage engine of the project: File storage.
-* create all unittests to validate all our classes and storage engine
+* Created a simple flow of serialization/deserialization: Instance <-> Dictionary <-> JSON string <-> file
+* Created all classes used for AirBnB (`User`, `State`, `City`, `Place`…) that inherit from `BaseModel`
+* Created the first abstracted storage engine of the project: File storage.
+* Created all unittests to validate all our classes and storage engine
 
 ## Learning Objectives
 * How to create a Python package
@@ -59,7 +59,7 @@ models/engine/ | Contains file where class `FileStorage` is defined
 tests/test_models/ | Contains unittests files to test classes in dir `models/`
 tests/test_models/test_engine | Contains unittest files to test classes in dir `engine/`
 
-#### Our command interpreter is able to:
+### Our command interpreter is able to:
 * Create a new object (ex: a new User or a new Place)
 * Retrieve an object from a file, a database etc…
 * Do operations on objects (count, compute stats, etc…)
@@ -67,5 +67,5 @@ tests/test_models/test_engine | Contains unittest files to test classes in dir `
 
 
 ## Authors
-[Jian Huang] (http://github.com/trieToSucceed/)
-[Jinji Zhang] (https://github.com/iamzinzi/)
+[Jian Huang](http://github.com/trieToSucceed/)
+[Jinji Zhang](https://github.com/iamzinzi/)
