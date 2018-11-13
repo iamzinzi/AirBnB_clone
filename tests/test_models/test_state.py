@@ -72,9 +72,11 @@ class TestState(unittest.TestCase):
     def test_to_dict(self):
         self.state1.name = "California"
         model_json = self.state1.to_dict()
-        state1_dict = self.state1.__dict__
-        self.assertEqual(model_json['created_at'], state1_dict['created_at'].isoformat())
-        self.assertEqual(model_json['updated_at'], state1_dict['updated_at'].isoformat())
+        state1_dict = self.state1.__dict__.copy()
+        self.assertEqual(model_json['created_at'],
+                         state1_dict['created_at'].isoformat())
+        self.assertEqual(model_json['updated_at'],
+                         state1_dict['updated_at'].isoformat())
         state1_dict['created_at'] = state1_dict['created_at'].isoformat()
         state1_dict['updated_at'] = state1_dict['updated_at'].isoformat()
         state1_dict['__class__'] = self.state1.__class__.__name__
