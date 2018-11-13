@@ -64,9 +64,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(self.base1, "name"))
 
     def test_to_dict(self):
-        self.base1.name = "Holberton"
-        model_json = self.base1.to_dict()
-        base1_dict = self.base1.__dict__
+        self.base2.name = "Holberton"
+        model_json = self.base2.to_dict()
+        base1_dict = self.base2.__dict__.copy()
         self.assertEqual(model_json['created_at'], base1_dict['created_at'].isoformat())
         self.assertEqual(model_json['updated_at'], base1_dict['updated_at'].isoformat())
         base1_dict['created_at'] = base1_dict['created_at'].isoformat()
