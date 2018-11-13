@@ -13,6 +13,7 @@ from models.review import Review
 import models
 import shlex
 
+
 class HBNBCommand(cmd.Cmd):
     """
     HBNB Console extends from cmd package
@@ -108,6 +109,19 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
+    def do_count(self, arg):
+        'Retrieves the number of instances of a class'
+        args = parse(arg)
+        objects = models.storage.all()
+        count = 0
+        if not args:
+            print("** class name missing **")
+        else:
+            for k, v in objects.items():
+                if objects[k].__class__.__name__ == args[0]:
+                    count += 1
+            print(count)
+
     def do_update(self, arg):
         'Updates an instance based on the class name and id'
         args = parse(arg)
@@ -142,18 +156,30 @@ class HBNBCommand(cmd.Cmd):
         'overrides default emptyline behavior to do nothing'
         pass
 
-    # TODO: do_all is currently hardcoded, make dynamic for all commands
+    # TODO: fix spacing in vim
+    methods = {
+        "all": do_all,
+        "count": do_count
+    }
+
     def default(self, line):
         'overrides default syntax error message'
         args = line.split('.')
+
         if args[0] in HBNBCommand.classes:
-            self.do_all(args[0])
+            arg = args[0]
+        if args[1][:-2] in HBNBCommand.methods:
+            method = HBNBCommand.methods[args[1][:-2]]
+        if arg and method:
+            method(self, arg)
+
 
 def parse(arg):
     """
     Parse arguments and split by space
     """
     return tuple(shlex.split(arg))
+
 
 def is_int(n):
     """Checks if argument is an integer"""
@@ -162,6 +188,7 @@ def is_int(n):
         return True
     except ValueError:
         return False
+
 
 def is_float(n):
     """Checks if argument is a float. NOTE: Also returns True for integers,
