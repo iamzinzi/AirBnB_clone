@@ -45,16 +45,16 @@ class TestReview(unittest.TestCase):
         self.assertEqual(type(self.review1.updated_at), type(datetime.now()))
 
     def test_str(self):
-         expected = "[{}] ({}) {}".format(
+        expected = "[{}] ({}) {}".format(
             self.review1.__class__.__name__,
             self.review1.id,
             self.review1.__dict__
         )
-         a_io = io.StringIO()
-         sys.stdout = a_io
-         print(self.review1, end="")
-         self.assertEqual(expected, a_io.getvalue())
-         sys.stdout = sys.__stdout__
+        a_io = io.StringIO()
+        sys.stdout = a_io
+        print(self.review1, end="")
+        self.assertEqual(expected, a_io.getvalue())
+        sys.stdout = sys.__stdout__
 
     def test_place_id(self):
         self.assertTrue(hasattr(self.review1, "place_id"))
@@ -91,9 +91,11 @@ class TestReview(unittest.TestCase):
         self.review1.user_id = b.id
         self.review1.text = "Leave a review!"
         model_json = self.review1.to_dict()
-        review_dict = self.review1.__dict__
-        self.assertEqual(model_json['created_at'], review_dict['created_at'].isoformat())
-        self.assertEqual(model_json['updated_at'], review_dict['updated_at'].isoformat())
+        review_dict = self.review1.__dict__.copy()
+        self.assertEqual(model_json['created_at'],
+                         review_dict['created_at'].isoformat())
+        self.assertEqual(model_json['updated_at'],
+                         review_dict['updated_at'].isoformat())
         review_dict['created_at'] = review_dict['created_at'].isoformat()
         review_dict['updated_at'] = review_dict['updated_at'].isoformat()
         review_dict['__class__'] = self.review1.__class__.__name__

@@ -86,12 +86,12 @@ class TestPlace(unittest.TestCase):
         Place.number_bathrooms = 1
         self.assertEqual(self.place1.number_bathrooms, 1)
         self.assertEqual(self.place1.number_bathrooms,
-                self.place2.number_bathrooms)
+                         self.place2.number_bathrooms)
         self.place1.number_bathrooms = 2
         self.assertEqual(self.place1.number_bathrooms, 2)
         self.assertFalse(self.place1.number_bathrooms ==
-                self.place2.number_bathrooms)
-    
+                         self.place2.number_bathrooms)
+
     def test_max_guest(self):
         self.assertTrue(hasattr(self.place1, "max_guest"))
         self.assertTrue(type(self.place1.max_guest) is int)
@@ -99,11 +99,11 @@ class TestPlace(unittest.TestCase):
         Place.max_guest = 5
         self.assertEqual(self.place1.max_guest, 5)
         self.assertEqual(self.place1.max_guest,
-                self.place2.max_guest)
+                         self.place2.max_guest)
         self.place1.max_guest = 10
         self.assertEqual(self.place1.max_guest, 10)
         self.assertFalse(self.place1.max_guest ==
-                self.place2.max_guest)
+                         self.place2.max_guest)
 
     def test_price_by_night(self):
         self.assertTrue(hasattr(self.place1, "price_by_night"))
@@ -112,11 +112,11 @@ class TestPlace(unittest.TestCase):
         Place.price_by_night = 100
         self.assertEqual(self.place1.price_by_night, 100)
         self.assertEqual(self.place1.price_by_night,
-                self.place2.price_by_night)
+                         self.place2.price_by_night)
         self.place1.price_by_night = 200
         self.assertEqual(self.place1.price_by_night, 200)
         self.assertFalse(self.place1.price_by_night ==
-                self.place2.price_by_night)
+                         self.place2.price_by_night)
 
     def test_latitude(self):
         self.assertTrue(hasattr(self.place1, "latitude"))
@@ -128,7 +128,7 @@ class TestPlace(unittest.TestCase):
         self.place1.latitude = 80.0
         self.assertEqual(self.place1.latitude, 80.0)
         self.assertFalse(self.place1.latitude ==
-                self.place2.latitude)
+                         self.place2.latitude)
 
     def test_longitude(self):
         self.assertTrue(hasattr(self.place1, "longitude"))
@@ -140,7 +140,7 @@ class TestPlace(unittest.TestCase):
         self.place1.longitude = 80.0
         self.assertEqual(self.place1.longitude, 80.0)
         self.assertFalse(self.place1.longitude ==
-                self.place2.longitude)
+                         self.place2.longitude)
 
     def test_amenity_ids(self):
         self.assertTrue(hasattr(self.place1, "amenity_ids"))
@@ -152,7 +152,7 @@ class TestPlace(unittest.TestCase):
         self.place1.amenity_ids = ["Toothbrush"]
         self.assertEqual(self.place1.amenity_ids, ["Toothbrush"])
         self.assertFalse(self.place1.amenity_ids ==
-                self.place2.amenity_ids)
+                         self.place2.amenity_ids)
 
     def test_isinstance(self):
         self.assertTrue(isinstance(self.place1, BaseModel))
