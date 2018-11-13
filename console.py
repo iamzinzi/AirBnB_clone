@@ -107,7 +107,8 @@ class HBNBCommand(cmd.Cmd):
             if obj_list:
                 print(obj_list)
             else:
-                print("** class doesn't exist **")
+                if args[0] not in HBNBCommand.classes:
+                    print("** class doesn't exist **")
 
     def do_count(self, arg):
         'Retrieves the number of instances of a class'
