@@ -47,7 +47,20 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(city1_id in obj_dict)
         self.assertTrue(obj_dict[city1_id] is city1)
 
-    def test_save_reload(self):
+    def test_save(self):
+        base1 = BaseModel()
+        city1 = City()
+        base1_id = "{}.{}".format(base1.__class__.__name__, base1.id)
+        city1_id = "{}.{}".format(city1.__class__.__name__, city1.id)
+        obj_dict_presave = self.storage.all()
+        base1.save()
+        self.storage.reload()
+        obj_dict_postsave = self.storage.all()
+        self.assertTrue(base1_id in obj_dict_postsave)
+        self.assertTrue(city1_id in obj_dict_postsave)
+        self.assertTrue(obj_dict_postsave == obj_dict_presave)
+
+    def test_reload(self):
         base1 = BaseModel()
         city1 = City()
         base1_id = "{}.{}".format(base1.__class__.__name__, base1.id)
