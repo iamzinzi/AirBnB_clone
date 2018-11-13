@@ -58,4 +58,4 @@ class TestFileStorage(unittest.TestCase):
         obj_dict_postsave = self.storage.all()
         self.assertTrue(base1_id in obj_dict_postsave)
         self.assertTrue(city1_id in obj_dict_postsave)
-        self.assertTrue(obj_dict_postsave == obj_dict_presave) 
+        self.assertTrue(obj_dict_postsave == obj_dict_presave)
