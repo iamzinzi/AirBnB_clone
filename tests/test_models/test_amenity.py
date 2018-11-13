@@ -69,10 +69,15 @@ class TestAmenity(unittest.TestCase):
     def test_to_dict(self):
         self.amenity1.name = "Fireplace"
         model_json = self.amenity1.to_dict()
-        amenity1_dict = self.amenity1.__dict__
-        self.assertEqual(model_json['created_at'], amenity1_dict['created_at'].isoformat())
-        self.assertEqual(model_json['updated_at'], amenity1_dict['updated_at'].isoformat())
-    #        amenity1_dict['created_at'] = (amenity1_dict['created_at']).isoformat()
+        amenity1_dict = self.amenity1.__dict__.copy()
+        self.assertEqual(model_json['created_at'],
+                         amenity1_dict['created_at'].isoformat())
+        self.assertEqual(model_json['updated_at'],
+                         amenity1_dict['updated_at'].isoformat())
+        amenity1_dict['created_at'] = (amenity1_dict['created_at']).isoformat()
+        amenity1_dict['updated_at'] = (amenity1_dict['updated_at']).isoformat()
+        amenity1_dict['__class__'] = 'Amenity'
+        self.assertDictEqual(amenity1_dict, model_json)
 
     def test_init_with_kwargs(self):
         self.amenity1.name = "Jacuzzi"
