@@ -6,6 +6,7 @@ import unittest
 import io
 import sys
 import models
+from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -23,8 +24,7 @@ class TestFileStorage(unittest.TestCase):
         """
         Set up method
         """
-        # storage = models.engine.file_storage.FileStorage()
-        pass
+        self.storage = FileStorage()
 
     def tearDown(self):
         """
@@ -32,11 +32,30 @@ class TestFileStorage(unittest.TestCase):
         """
         pass
 
-    '''
-    def test_file_path(self):
-        self.assertEqual(self.storage.__file_path, "file.json")
+    def test_all(self):
+        obj_dict = self.storage.all()
+        self.assertTrue(type(obj_dict) is dict)
 
-    def test_objects(self):
-        self.assertTrue(type(self.storage.__objects) is dict)
-        self.assertTrue(self.storage.__object == False)
-    '''
+    def test_new(self):
+        base1 = BaseModel()
+        city1 = City()
+        base1_id = "{}.{}".format(base1.__class__.__name__, base1.id)
+        city1_id = "{}.{}".format(city1.__class__.__name__, city1.id)
+        obj_dict = self.storage.all()
+        self.assertTrue(base1_id in obj_dict)
+        self.assertTrue(obj_dict[base1_id] is base1)
+        self.assertTrue(city1_id in obj_dict)
+        self.assertTrue(obj_dict[city1_id] is city1)
+
+    def test_save_reload(self):
+        base1 = BaseModel()
+        city1 = City()
+        base1_id = "{}.{}".format(base1.__class__.__name__, base1.id)
+        city1_id = "{}.{}".format(city1.__class__.__name__, city1.id)
+        obj_dict_presave = self.storage.all()
+        base1.save()
+        self.storage.reload()
+        obj_dict_postsave = self.storage.all()
+        self.assertTrue(base1_id in obj_dict_postsave)
+        self.assertTrue(city1_id in obj_dict_postsave)
+        self.assertTrue(obj_dict_postsave == obj_dict_presave) 
