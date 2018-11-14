@@ -163,7 +163,8 @@ class HBNBCommand(cmd.Cmd):
             "all": do_all,
             "count": do_count,
             "show": do_show,
-            "destroy": do_destroy
+            "destroy": do_destroy,
+            "update": do_update
             }
 
     def default(self, line):
@@ -180,16 +181,13 @@ class HBNBCommand(cmd.Cmd):
             elif len(args) < 5 and (args[2] != "" and args[3] == ""):
                 string = "{} {}".format(args[0], args[2])
                 method(self, string)
-        '''
-        args = line.split('.')
-
-        if args[0] in HBNBCommand.classes:
-            arg = args[0]
-        if args[1][:-2] in HBNBCommand.methods:
-            method = HBNBCommand.methods[args[1][:-2]]
-        if arg and method:
-            method(self, arg)
-        '''
+            elif len(args) < 7 and (
+                    args[2] != "" and args[3] != "" and args[4] != ""
+                    ):
+                string = "{} {} {} {}".format(
+                        args[0], args[2], args[3], args[4]
+                        )
+                method(self, string)
 
     def postloop(self):
         'override by printing loop at end'
