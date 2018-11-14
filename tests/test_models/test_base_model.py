@@ -9,6 +9,7 @@ from datetime import datetime
 from models.base_model import BaseModel
 import models
 
+
 class TestBaseModel(unittest.TestCase):
     """test for class BaseModel and its methods
     """
@@ -67,13 +68,18 @@ class TestBaseModel(unittest.TestCase):
         self.base2.name = "Holberton"
         model_json = self.base2.to_dict()
         base1_dict = self.base2.__dict__.copy()
-        self.assertEqual(model_json['created_at'], base1_dict['created_at'].isoformat())
-        self.assertEqual(model_json['updated_at'], base1_dict['updated_at'].isoformat())
+        self.assertEqual(
+                model_json['created_at'],
+                base1_dict['created_at'].isoformat()
+                )
+        self.assertEqual(
+                model_json['updated_at'],
+                base1_dict['updated_at'].isoformat()
+                )
         base1_dict['created_at'] = base1_dict['created_at'].isoformat()
         base1_dict['updated_at'] = base1_dict['updated_at'].isoformat()
         base1_dict['__class__'] = self.base1.__class__.__name__
         self.assertDictEqual(base1_dict, model_json)
-
 
     def test_init_with_kwargs(self):
         self.base1.name = "Holberton"
@@ -84,7 +90,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNot(self.base1, my_new_model)
 
     def test_storage(self):
-        #storage = models.engine.file_storage.FileStorage()
         obj_dict = models.storage.all()
         self.assertTrue(obj_dict)
 
