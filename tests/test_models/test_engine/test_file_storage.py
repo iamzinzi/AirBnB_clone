@@ -32,6 +32,18 @@ class TestFileStorage(unittest.TestCase):
         """
         pass
 
+    def test_private_class_attributes(self):
+        with self.assertRaises(AttributeError):
+            print(self.storage.__objects)
+        with self.assertRaises(AttributeError):
+            print(self.storage.__file_path)
+
+    def test_file_path(self):
+        self.assertEqual(self.storage._FileStorage__file_path, "file.json")
+
+    def test_objects(self):
+        self.assertIs(type(self.storage._FileStorage__objects), dict)
+
     def test_all(self):
         obj_dict = self.storage.all()
         self.assertTrue(type(obj_dict) is dict)
@@ -72,3 +84,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(base1_id in obj_dict_postsave)
         self.assertTrue(city1_id in obj_dict_postsave)
         self.assertTrue(obj_dict_postsave == obj_dict_presave)
+
+if __name__ == '__main__':
+    unittest.main()
