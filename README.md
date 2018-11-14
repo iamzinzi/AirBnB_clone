@@ -34,7 +34,7 @@ This project is the first step towards building our first full web application: 
 * All your classes should have a documentation
 * All your functions (inside and outside a class) should have a documentation
 
-### How to Use it
+## How to Use it
 * To install the console, clone our repository by running the command `git clone https://github.com/TrieToSucceed/AirBnB_clone.git`
 * To start the console, run the command `./console.py` in the main directory (`AirBnB_clone`) for interactive mode.
 ```
@@ -43,7 +43,7 @@ vagrant@vagrant-ubuntu-trusty-64:~/AirBnB_clone$ ./console.py
 ```
 * Our console also works in non-interactive mode as such:
 ```
-vagrant@vagrant-ubuntu-trusty-64:~/AirBnB_clone$ echo \"help\" | ./console.py
+vagrant@vagrant-ubuntu-trusty-64:~/AirBnB_clone$ echo "help" | ./console.py
 (hbnb)
 Documented commands (type help <topic>):
 ========================================
@@ -51,6 +51,51 @@ EOF  all  count  create  destroy  help  quit  show  update
 
 (hbnb)
 vagrant@vagrant-ubuntu-trusty-64:~/AirBnB_clone$
+```
+For help on syntax, type the command `help <command>` into the console.
+
+## Examples
+Starting with no objects, we will create a BaseModel instance, update it with the key-value pair `first_name: "Betty"`, and then prove our instance has changed.
+```
+(hbnb) all
+(hbnb) create BaseModel
+bca8ad60-bf0e-4d4f-9264-24944d8c6672
+(hbnb) show BaseModel bca8ad60-bf0e-4d4f-9264-24944d8c6672
+[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241)}
+(hbnb) 
+(hbnb) update BaseModel bca8ad60-bf0e-4d4f-9264-24944d8c6672 first_name "Betty"
+(hbnb) show BaseModel bca8ad60-bf0e-4d4f-9264-24944d8c6672
+[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}
+(hbnb) 
+Now let's create a few more objects to demonstrate how all, count, and destroy work.
+```
+(hbnb) create BaseModel
+d98de563-89c7-4dc3-9f46-e087911813f6
+(hbnb) create BaseModel
+9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02
+(hbnb) create User
+a83cba86-f7ce-470f-89f8-85af656bc6df
+(hbnb) count BaseModel
+3
+(hbnb) count User
+1
+(hbnb) count City
+0
+(hbnb) all BaseModel
+["[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}", "[BaseModel] (9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 44, 205574), 'id': '9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 44, 205618)}", "[BaseModel] (d98de563-89c7-4dc3-9f46-e087911813f6) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668384), 'id': 'd98de563-89c7-4dc3-9f46-e087911813f6', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668408)}"]
+(hbnb) all
+["[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}", "[BaseModel] (9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 44, 205574), 'id': '9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 44, 205618)}", "[BaseModel] (d98de563-89c7-4dc3-9f46-e087911813f6) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668384), 'id': 'd98de563-89c7-4dc3-9f46-e087911813f6', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668408)}", "[User] (a83cba86-f7ce-470f-89f8-85af656bc6df) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112270), 'id': 'a83cba86-f7ce-470f-89f8-85af656bc6df', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112295)}"]
+(hbnb) destroy BaseModel 9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02
+(hbnb) count BaseModel
+2
+(hbnb) 
+```
+In addition, all of our commands work with Object method notation as such:
+```
+(hbnb) BaseModel.count()
+2
+(hbnb) User.all()
+["[User] (cbde29bc-7dbb-45d5-b6b3-54afaf953cb3) {'created_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362051), 'updated_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362076), 'id': 'cbde29bc-7dbb-45d5-b6b3-54afaf953cb3', 'stars': 5.5}", "[User] (a83cba86-f7ce-470f-89f8-85af656bc6df) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112270), 'id': 'a83cba86-f7ce-470f-89f8-85af656bc6df', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112295)}"]
 ```
 
 
@@ -87,5 +132,5 @@ tests/test_models/test_engine | Contains unittest files to test classes in dir `
 
 
 ## Authors
-[Jian Huang](http://github.com/trieToSucceed/)
+[Jian Huang](http://github.com/trieToSucceed/) 
 [Jinji Zhang](https://github.com/iamzinzi/)
