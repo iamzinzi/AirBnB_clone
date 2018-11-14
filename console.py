@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         'Exit command to exit the program'
-        self.do_quit(arg)
+        return True
 
     def do_create(self, arg):
         'Create a new instance of a class'
@@ -173,6 +173,9 @@ class HBNBCommand(cmd.Cmd):
         if arg and method:
             method(self, arg)
 
+    def postloop(self):
+        'override by printing loop at end'
+        print()
 
 def parse(arg):
     """
