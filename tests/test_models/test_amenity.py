@@ -87,3 +87,6 @@ class TestAmenity(unittest.TestCase):
         self.assertIn("name", my_new_amenity.to_dict())
         self.assertEqual(my_new_amenity.name, "Jacuzzi")
         self.assertIsNot(self.amenity1, my_new_amenity)
+
+if __name__ == '__main__':
+    unittest.main()

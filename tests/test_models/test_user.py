@@ -71,3 +71,6 @@ class TestUser(unittest.TestCase):
     def test_isinstance(self):
         self.assertTrue(isinstance(self.user1, BaseModel))
         self.assertFalse(type(self.user1) is BaseModel)
+
+if __name__ == '__main__':
+    unittest.main()
