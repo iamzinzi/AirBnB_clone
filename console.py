@@ -185,11 +185,21 @@ class HBNBCommand(cmd.Cmd):
                 method(self, string)
             elif len(args) < 7 and (
                     args[2] != "" and args[3] != "" and args[4] != ""
-                    ):
+                    ) and args[3][0] != "{":
                 string = "{} {} {} {}".format(
                         args[0], args[2], args[3], args[4]
                         )
                 method(self, string)
+            elif len(args) > 4 and args[3] != "" and args[1] == "update":
+                for i in range(3, len(args)):
+                    args[i] = args[i].replace('{', '').replace('}', '')
+                    subargs = re.split('[:]', args[i])
+                    if subargs == [""]:
+                        return
+                    string = "{} {} {} {}".format(
+                            args[0], args[2], subargs[0], subargs[1]
+                            )
+                    method(self, string)
 
     def postloop(self):
         'override by printing loop at end'
