@@ -139,9 +139,11 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             print("** value missing **")
         else:
+            found = False
             for k, v in objects.items():
                 obj_id = objects[k].id
                 if obj_id == args[1]:
+                    found = True
                     obj_dict = objects[k].__dict__
                     input_value = args[3]
                     if is_int(input_value):
@@ -151,8 +153,8 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         obj_dict[args[2]] = input_value
                     models.storage.save()
-                else:
-                    print("** no instance found **")
+            if not found:
+                print("** no instance found **")
 
     def emptyline(self):
         'overrides default emptyline behavior to do nothing'
