@@ -205,6 +205,7 @@ class HBNBCommand(cmd.Cmd):
         'override by printing loop at end'
         print()
 
+
 def parse(arg):
     """
     Parse arguments and split by space
