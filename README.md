@@ -34,6 +34,26 @@ This project is the first step towards building our first full web application: 
 * All your classes should have a documentation
 * All your functions (inside and outside a class) should have a documentation
 
+### How to Use it
+* To install the console, clone our repository by running the command `git clone https://github.com/TrieToSucceed/AirBnB_clone.git`
+* To start the console, run the command `./console.py` in the main directory (`AirBnB_clone`) for interactive mode.
+```
+vagrant@vagrant-ubuntu-trusty-64:~/AirBnB_clone$ ./console.py
+(hbnb)
+```
+* Our console also works in non-interactive mode as such:
+```
+vagrant@vagrant-ubuntu-trusty-64:~/AirBnB_clone$ echo \"help\" | ./console.py
+(hbnb)
+Documented commands (type help <topic>):
+========================================
+EOF  all  count  create  destroy  help  quit  show  update
+
+(hbnb)
+vagrant@vagrant-ubuntu-trusty-64:~/AirBnB_clone$
+```
+
+
 ## Files
 ---
 File|Task
