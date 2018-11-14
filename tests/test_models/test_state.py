@@ -90,3 +90,6 @@ class TestState(unittest.TestCase):
         self.assertIn("name", my_new_state.to_dict())
         self.assertEqual(my_new_state.name, "California")
         self.assertIsNot(self.state1, my_new_state)
+
+if __name__ == '__main__':
+    unittest.main()
