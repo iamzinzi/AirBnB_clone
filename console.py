@@ -161,13 +161,13 @@ class HBNBCommand(cmd.Cmd):
     # TODO: fix spacing in vim
     methods = {
             "all": do_all,
-            "count": do_count
+            "count": do_count,
+            "show": do_show
             }
 
     def default(self, line):
         'overrides default syntax error message'
         args = re.split('[.,()]', line.replace(' ', ''))
-        print(args)
         arg, method = None, None
         if args[0] in HBNBCommand.classes:
             arg = args[0]
@@ -176,6 +176,9 @@ class HBNBCommand(cmd.Cmd):
         if arg and method:
             if len(args) < 5 and (args[2] == "" and args[3] == ""):
                 method(self, arg)
+            elif len(args) < 5 and (args[2] != "" and args[3] == ""):
+                string = "{} {}".format(args[0], args[2])
+                method(self, string)
         '''
         args = line.split('.')
 
