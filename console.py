@@ -12,6 +12,7 @@ from models.place import Place
 from models.review import Review
 import models
 import shlex
+import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -159,12 +160,23 @@ class HBNBCommand(cmd.Cmd):
 
     # TODO: fix spacing in vim
     methods = {
-        "all": do_all,
-        "count": do_count
-    }
+            "all": do_all,
+            "count": do_count
+            }
 
     def default(self, line):
         'overrides default syntax error message'
+        args = re.split('[.,()]', line.replace(' ', ''))
+        print(args)
+        arg, method = None, None
+        if args[0] in HBNBCommand.classes:
+            arg = args[0]
+        if len(args) > 1 and args[1] in HBNBCommand.methods:
+            method = HBNBCommand.methods[args[1]]
+        if arg and method:
+            if len(args) < 5 and (args[2] == "" and args[3] == ""):
+                method(self, arg)
+        '''
         args = line.split('.')
 
         if args[0] in HBNBCommand.classes:
@@ -173,6 +185,7 @@ class HBNBCommand(cmd.Cmd):
             method = HBNBCommand.methods[args[1][:-2]]
         if arg and method:
             method(self, arg)
+        '''
 
     def postloop(self):
         'override by printing loop at end'
