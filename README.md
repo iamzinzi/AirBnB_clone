@@ -66,38 +66,44 @@ bca8ad60-bf0e-4d4f-9264-24944d8c6672
 (hbnb) update BaseModel bca8ad60-bf0e-4d4f-9264-24944d8c6672 first_name "Betty"
 (hbnb) show BaseModel bca8ad60-bf0e-4d4f-9264-24944d8c6672
 [BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}
-(hbnb) 
-Now let's create a few more objects to demonstrate how all, count, and destroy work.
+(hbnb)
+```
+* Now let's create a few more objects to demonstrate how all, count, and destroy work.
 ```
 (hbnb) create BaseModel
 d98de563-89c7-4dc3-9f46-e087911813f6
-(hbnb) create BaseModel
-9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02
 (hbnb) create User
 a83cba86-f7ce-470f-89f8-85af656bc6df
 (hbnb) count BaseModel
-3
+2
 (hbnb) count User
 1
 (hbnb) count City
 0
 (hbnb) all BaseModel
-["[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}", "[BaseModel] (9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 44, 205574), 'id': '9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 44, 205618)}", "[BaseModel] (d98de563-89c7-4dc3-9f46-e087911813f6) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668384), 'id': 'd98de563-89c7-4dc3-9f46-e087911813f6', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668408)}"]
+["[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}", "[BaseModel] (d98de563-89c7-4dc3-9f46-e087911813f6) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668384), 'id': 'd98de563-89c7-4dc3-9f46-e087911813f6', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668408)}"]
 (hbnb) all
-["[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}", "[BaseModel] (9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 44, 205574), 'id': '9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 44, 205618)}", "[BaseModel] (d98de563-89c7-4dc3-9f46-e087911813f6) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668384), 'id': 'd98de563-89c7-4dc3-9f46-e087911813f6', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668408)}", "[User] (a83cba86-f7ce-470f-89f8-85af656bc6df) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112270), 'id': 'a83cba86-f7ce-470f-89f8-85af656bc6df', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112295)}"]
-(hbnb) destroy BaseModel 9a5eaa2c-3aa3-4df9-bfdb-1f8d4c7b1a02
+["[BaseModel] (bca8ad60-bf0e-4d4f-9264-24944d8c6672) {'created_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43214), 'updated_at': datetime.datetime(2018, 11, 14, 18, 42, 54, 43241), 'id': 'bca8ad60-bf0e-4d4f-9264-24944d8c6672', 'first_name': 'Betty'}", "[BaseModel] (d98de563-89c7-4dc3-9f46-e087911813f6) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668384), 'id': 'd98de563-89c7-4dc3-9f46-e087911813f6', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 40, 668408)}", "[User] (a83cba86-f7ce-470f-89f8-85af656bc6df) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112270), 'id': 'a83cba86-f7ce-470f-89f8-85af656bc6df', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112295)}"]
+(hbnb) destroy BaseModel d98de563-89c7-4dc3-9f46-e087911813f6
 (hbnb) count BaseModel
-2
+1
 (hbnb) 
 ```
-In addition, all of our commands work with Object method notation as such:
+* In addition, all of our commands (except for create) work with Object method notation as such:
 ```
 (hbnb) BaseModel.count()
-2
+1
 (hbnb) User.all()
-["[User] (cbde29bc-7dbb-45d5-b6b3-54afaf953cb3) {'created_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362051), 'updated_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362076), 'id': 'cbde29bc-7dbb-45d5-b6b3-54afaf953cb3', 'stars': 5.5}", "[User] (a83cba86-f7ce-470f-89f8-85af656bc6df) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112270), 'id': 'a83cba86-f7ce-470f-89f8-85af656bc6df', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112295)}"]
+["[User] (cbde29bc-7dbb-45d5-b6b3-54afaf953cb3) {'created_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362051), 'updated_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362076), 'id': 'cbde29bc-7dbb-45d5-b6b3-54afaf953cb3', "[User] (a83cba86-f7ce-470f-89f8-85af656bc6df) {'created_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112270), 'id': 'a83cba86-f7ce-470f-89f8-85af656bc6df', 'updated_at': datetime.datetime(2018, 11, 14, 18, 50, 49, 112295)}"]
+(hbnb) User.update("cbde29bc-7dbb-45d5-b6b3-54afaf953cb3", "gender", "Male")
+(hbnb) User.show("cbde29bc-7dbb-45d5-b6b3-54afaf953cb3")
+[User] (cbde29bc-7dbb-45d5-b6b3-54afaf953cb3) {'created_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362051), 'updated_at': datetime.datetime(2018, 11, 14, 18, 54, 20, 362076), 'id': 'cbde29bc-7dbb-45d5-b6b3-54afaf953cb3', 'gender': 'female'}
+(hbnb) User.count()
+2
+(hbnb) User.destroy("cbde29bc-7dbb-45d5-b6b3-54afaf953cb3")
+(hbnb) User.count()
+1
 ```
-
 
 ## Files
 ---
