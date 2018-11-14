@@ -162,7 +162,8 @@ class HBNBCommand(cmd.Cmd):
     methods = {
             "all": do_all,
             "count": do_count,
-            "show": do_show
+            "show": do_show,
+            "destroy": do_destroy
             }
 
     def default(self, line):
