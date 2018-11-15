@@ -22,12 +22,12 @@ class TestConsole(unittest.TestCase):
         sys.stdout = StringIO()
         if os.path.isfile("file.json"):
             os.remove("file.json")
- 
+
     def tearDown(self):
         sys.stdout = sys.__stdout__
         if os.path.isfile("file.json"):
             os.remove("file.json")
- 
+
     def create(self, server=None):
         return HBNBCommand(stdin=self.mock_stdin, stdout=self.mock_stdout)
 
@@ -105,7 +105,9 @@ class TestConsole(unittest.TestCase):
         self.assertEqual("** instance id missing **\n", sys.stdout.getvalue())
         self.flush_buffer()
         self.cli.onecmd("update BaseModel 123")
-        self.assertEqual("** attribute name missing **\n", sys.stdout.getvalue())
+        self.assertEqual(
+                "** attribute name missing **\n",
+                sys.stdout.getvalue())
         self.flush_buffer()
         obj_dict = storage.all()
 
