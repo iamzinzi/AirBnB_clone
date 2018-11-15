@@ -49,7 +49,66 @@ class TestConsole(unittest.TestCase):
     def test_create(self):
         self.cli.onecmd("create User")
         self.assertTrue(sys.stdout.getvalue())
-        obj_id = "{}.{}".format("User", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("create")
+        self.assertEqual("** class name missing **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("create MyModel")
+        self.assertEqual("** class doesn't exist **\n", sys.stdout.getvalue())
+
+    def test_show(self):
+        self.cli.onecmd("show")
+        self.assertEqual("** class name missing **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("show MyModel")
+        self.assertEqual("** class doesn't exist **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("show BaseModel")
+        self.assertEqual("** instance id missing **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("show BaseModel 123")
+        self.assertEqual("** no instance found **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("create BaseModel")
+        self.assertTrue(sys.stdout.getvalue())
+
+    def test_destroy(self):
+        self.cli.onecmd("destroy")
+        self.assertEqual("** class name missing **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("destroy MyModel")
+        self.assertEqual("** class doesn't exist **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("destroy BaseModel")
+        self.assertEqual("** instance id missing **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("destroy BaseModel 123")
+        self.assertEqual("** no instance found **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+
+    def test_all(self):
+        self.cli.onecmd("all MyModel")
+        self.assertEqual("** class doesn't exist **\n", sys.stdout.getvalue())
+
+    def test_update(self):
+        self.cli.onecmd("update")
+        self.assertEqual("** class name missing **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("update MyModel")
+        self.assertEqual("** class doesn't exist **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("update BaseModel")
+        self.assertEqual("** instance id missing **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        self.cli.onecmd("update BaseModel 123")
+        self.assertEqual("** attribute name missing **\n", sys.stdout.getvalue())
+        self.flush_buffer()
+        obj_dict = storage.all()
+
+    @staticmethod
+    def flush_buffer():
+        sys.stdout.seek(0)
+        sys.stdout.truncate(0)
 
 if __name__ == '__main__':
     unittest.main()
