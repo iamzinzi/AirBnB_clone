@@ -29,14 +29,22 @@ button:hover {
 .locations, .amenities {
     height: 100%;
     width: 25%;
-    border-right: 1px solid #DDDDDD; /* TODO: only for 1st left filter */
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.locations {
+    border-right: 1px solid #DDDDDD;
 }
 
 .locations h3, .amenities h3 {
     font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 6px;
 }
 
 .locations h4, .amenities h4 {
     font-weight: 400;
     font-size: 14px;
+    margin-top: 0px;
 }
