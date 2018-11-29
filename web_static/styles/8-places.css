@@ -57,7 +57,7 @@ div.information {
     top: 50px;
 }
 
-max_guest::before {
+.max_guest::before {
     width: 100px;
     content: url('../images/icon_group.png');
     object-fit: none;
