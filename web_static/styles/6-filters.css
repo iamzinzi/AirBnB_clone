@@ -30,7 +30,7 @@ button:hover {
     height: 100%;
     width: 25%;
     display: inline-block;
-    margin-left: 30px;
+    margin-left: 35px;
     float: left;
 }
 
@@ -52,8 +52,8 @@ button:hover {
 
 .popover {
     background-color: #FAFAFA;
-    width: 96%;
-    margin-left: -30px;
+    width: 97.5%;
+    margin-left: -35px;
     margin-top: -1px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -63,7 +63,7 @@ button:hover {
 }
 
 .sublist {
-    margin-left: -20px;
+    margin-left: -25px;
 }
 
 .locations:hover .popover,

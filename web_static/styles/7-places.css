@@ -4,6 +4,8 @@
     top: 11px;
     font-size: 30px;
     text-align: left;
+    margin-bottom: 17px;
+    z-index: -1;
 }
 
 .places article {
