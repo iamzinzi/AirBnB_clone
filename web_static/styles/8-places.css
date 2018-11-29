@@ -15,6 +15,8 @@
     margin: 20px;
     border: 1px solid #FF5A5F;
     border-radius: 4px;
+    position: relative;
+    z-index: -1;
 }
 
 .places h2 {
@@ -36,4 +38,8 @@ section.places {
     position: absolute;
     right: 10px;
     top: 10px;
+}
+
+div.price_text {
+    padding-top: 10px;
 }
