@@ -17,6 +17,8 @@
     border-radius: 4px;
     position: relative;
     z-index: -1;
+    min-height: 360px;
+    overflow: hidden;
 }
 
 .places h2 {
@@ -94,4 +96,14 @@ div.information {
     transform: translateY(-48px);
     position: absolute;
     left: 145px;
+}
+
+.user {
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 7px;
+}
+
+.description {
+    text-align: left;
 }
