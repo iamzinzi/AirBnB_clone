@@ -48,8 +48,50 @@ div.information {
     height: 80px;
     border-top: 1px solid #DDDDDD;
     border-bottom: 1px solid #DDDDDD;
+    position: relative;
 }
 
-div.max_guest, div.number_rooms, div.number_bathrooms {
+.max_guest {
+    position: relative;
+    left: -110px;
+    top: 50px;
+}
+
+max_guest::before {
     width: 100px;
+    content: url('../images/icon_group.png');
+    object-fit: none;
+    transform: translateY(-48px);
+    position: absolute;
+    left: 143px;
+}
+
+.number_rooms {
+    position: relative;
+    left: 0px;
+    top: 34px;
+}
+
+.number_rooms::before {
+    width: 100px;
+    content: url('../images/icon_bed.png');
+    object-fit: none;
+    transform: translateY(-48px);
+    position: absolute;
+    left: 140px;
+}
+
+.number_bathrooms {
+    position: relative;
+    right: -110px;
+    top: 16px;
+}
+
+.number_bathrooms::before {
+    width: 100px;
+    content: url('../images/icon_bath.png');
+    object-fit: none;
+    transform: translateY(-48px);
+    position: absolute;
+    left: 145px;
 }
